@@ -1,15 +1,18 @@
 package ca.qc.cgmatane.informatique.combatarena;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import org.apache.cordova.*;
+import org.apache.cordova.DroidGap;
 
-public class VueCombatArena extends AppCompatActivity
+public class VueCombatArena extends DroidGap
 {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_combat_arena);
+        super.init();
+        super.loadUrl(Config.getStartUrl());
+        super.loadUrl("file:///android_asset/www/index.html");
     }
 }
