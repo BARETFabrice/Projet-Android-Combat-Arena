@@ -7,8 +7,7 @@
 </head>
 <body>    
 Il y a une erreur dans le programme
-    
-    <!-->TODO: a voir si on fait un ecran de connexion de joueur<-->
+
     <script id="page-accueil-combat-arena" type="text/plain">
         <h1 class="animated infinite bounce">Combat Arena</h1>
         <div>
@@ -17,9 +16,23 @@ Il y a une erreur dans le programme
         </div>
     </script>
     
-    <script id="page-inscription-combat-arena" type="text/plain">
+     <script id="page-inscription-combat-arena" type="text/plain">
         <h1>Inscription</h1>
         <div>
+			<form id="formulaire-inscription">
+				<fieldset>
+					<legend>Inscription</legend>
+					<div>
+						<label for="nom">Nom d'utilisateur</label>
+						<input type="text" name="nom" id="nom"/>
+					</div>
+					<div>
+						<label for="motdepasse">Mot de passe</label>
+						<input type="password" name="motdepasse" id="motdepasse"/>
+					</div>
+				 </fieldset>
+				<input type="submit" value="S'inscrire"/>
+			</form>
             <a href="#">Retour vers accueil<a>
         </div>
     </script>
@@ -34,10 +47,10 @@ Il y a une erreur dans le programme
     <script type="text/javascript" charset="utf-8" src="lib/Chart.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/howler.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/socket.io.js"></script>
+	<script type="text/javascript" charset="utf-8" src="lib/md5.min.js"></script>
     
     <!--<script type="text/javascript" charset="utf-8" src="lib/jquery.js"></script><-->
     
-    <!-->TODO: a voir si le dossier jeu est dans le dossier action<-->
 	<script src="action/donnee/Data.js"></script>
 	
     <script src="action/jeu/CombatArena.js"></script>
