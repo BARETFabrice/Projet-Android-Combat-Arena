@@ -7,7 +7,7 @@ var CombatArenaJeu = function()
         var app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
         document.body.appendChild(app.view);
 
-        var bunny = PIXI.Sprite.fromImage('action/jeu/asset/bunny.png');
+        var bunny = PIXI.Sprite.fromImage('asset/image/bunny.png');
 
         bunny.anchor.set(0.5);
 
