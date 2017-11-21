@@ -6,15 +6,16 @@
     
     function Application()
     {
-        $(window).on('hashchange', $.proxy(Application.naviguer,this));
-        Application.naviguer();
+        window.onhashchange=Application.naviguer;
+        window.location.hash="#";
+		Application.naviguer();
     }
     
     Application.Page = 
     {
-        pageAccueilCombatArena : document.querySelector("#page-accueil-combat-arena").innerHTML,
-        pageInscriptionCombatArena : document.querySelector("#page-inscription-combat-arena").innerHTML,
-        pageJeuCombatArena : document.querySelector("#page-jeu-combat-arena").innerHTML
+        pageAccueil : document.getElementById("page-accueil-combat-arena").innerHTML,
+        pageInscription : document.getElementById("page-inscription-combat-arena").innerHTML,
+        pageJeu : document.getElementById("page-jeu-combat-arena").innerHTML
     };
     
     Application.Page.initialiser = function()
@@ -25,13 +26,14 @@
     Application.naviguer = function()
     {
         var ancre = window.location.hash;
+		
 		if(!ancre)
 		{
-			combatArenaAccueilVue = new CombatArenaAccueilVue();
+			accueilVue = new AccueilVue();
 		}
         else if(ancre.match(/^#inscription/))
         {
-            combatArenaInscriptionVue = new CombatArenaInscriptionVue();
+            inscriptionVue = new InscriptionVue();
         }
         else if(ancre.match(/^#lancer-jeu/))
         {
@@ -39,8 +41,11 @@
         }
         else if(ancre.match(/^#jeu/))
         {
-            combatArenaJeuVue = new CombatArenaJeuVue();
+            JeuVue = new JeuVue();
         }
+		else{
+			ancre="#"
+		}
     };
     
     Application = new Application();

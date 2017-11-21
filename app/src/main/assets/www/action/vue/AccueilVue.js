@@ -1,8 +1,8 @@
-var CombatArenaAccueilVue = function()
+var AccueilVue = function()
 {
     function initialiser()
     {
-        document.querySelector("body").innerHTML = Page.pageAccueilCombatArena;
+        document.querySelector("body").innerHTML = Page.pageAccueil;
     }
     initialiser();
 };

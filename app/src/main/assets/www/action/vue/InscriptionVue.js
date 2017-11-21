@@ -1,8 +1,8 @@
-var CombatArenaInscriptionVue = function()
+var InscriptionVue = function()
 {
     function initialiser()
     {
-        document.querySelector("body").innerHTML = Page.pageInscriptionCombatArena;
+        document.querySelector("body").innerHTML = Page.pageInscription;
     }
     initialiser();
 };

@@ -1,12 +1,12 @@
-var CombatArenaJeuVue = function()
+var JeuVue = function()
 {
     var combatArenaJeu;
     
     function initialiser()
     {
-        document.querySelector("body").innerHTML = Page.pageJeuCombatArena;
+        document.querySelector("body").innerHTML = Page.pageJeu;
         
-        combatArenaJeu = CombatArenaJeu();
+        combatArena = CombatArena();
     }
     
     initialiser();

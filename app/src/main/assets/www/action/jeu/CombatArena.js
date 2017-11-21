@@ -1,4 +1,4 @@
-var CombatArenaJeu = function()
+var CombatArena = function()
 {
     function initialiser()
     {
