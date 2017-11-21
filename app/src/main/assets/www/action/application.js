@@ -31,15 +31,15 @@
 		{
 			accueilVue = new AccueilVue();
 		}
-        else if(ancre.match(/^#inscription/))
+        else if(new RegExp(/^#inscription/).test(ancre))
         {
             inscriptionVue = new InscriptionVue();
         }
-        else if(ancre.match(/^#lancer-jeu/))
+        else if(new RegExp(/^#lancer-jeu/).test(ancre))
         {
             window.location.hash = "#jeu";
         }
-        else if(ancre.match(/^#jeu/))
+        else if(new RegExp(/^#jeu/).test(ancre))
         {
             JeuVue = new JeuVue();
         }
