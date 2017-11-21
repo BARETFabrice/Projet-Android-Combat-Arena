@@ -10,9 +10,16 @@ const Data ={
 		fleche_haut:"fleche-haut.png"
 	},
 	son:{
-		click:"click.wav"
+		click:"click.wav",
+		theme_menu:"FindYou.flac"
 	},
 	texte:{
 		nom_jeu:"Combat Arena"
+	},
+	
+	joueur:{
+		nom:null,
+		id:null,
+		token:null
 	}
 };

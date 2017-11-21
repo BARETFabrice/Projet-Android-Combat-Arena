@@ -6,6 +6,7 @@
     
     function Application()
     {
+		Sons.playMusic("theme_menu");
         window.onhashchange=Application.naviguer;
         window.location.hash="#";
 		Application.naviguer();
