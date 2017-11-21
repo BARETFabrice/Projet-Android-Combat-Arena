@@ -8,5 +8,8 @@ var CombatArenaJeuVue = function()
         
         combatArenaJeu = CombatArenaJeu();
     }
+    
     initialiser();
+    
+    
 };
