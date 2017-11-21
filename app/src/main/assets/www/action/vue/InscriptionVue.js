@@ -1,4 +1,4 @@
-var InscriptionVue = function()
+const InscriptionVue = function()
 {
     function initialiser()
     {

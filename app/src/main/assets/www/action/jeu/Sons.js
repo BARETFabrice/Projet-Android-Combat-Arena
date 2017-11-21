@@ -1,8 +1,8 @@
 ﻿const Sons = (function()
 {
-	const PATH = "asset/sons/";
+	const PATH = Data.chemin_son;
 	
-	var soundList = Data.sound;
+	var soundList = Data.son;
 
 	var loadedSounds = {};
 

@@ -1,4 +1,4 @@
-var AccueilVue = function()
+const AccueilVue = function()
 {
     function initialiser()
     {

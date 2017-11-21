@@ -1,8 +1,8 @@
 (function()
  {
-    var combatArenaAccueilVue;
-    var combatArenaInscriptionVue;
-    var combatArenaJeuVue;
+    var accueilVue;
+    var inscriptionVue;
+    var jeuVue;
     
     function Application()
     {
@@ -25,6 +25,7 @@
     
     Application.naviguer = function()
     {
+		Sons.playSound("click");
         var ancre = window.location.hash;
 		
 		if(!ancre)
@@ -41,7 +42,7 @@
         }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
-            JeuVue = new JeuVue();
+            jeuVue = new JeuVue();
         }
 		else{
 			ancre="#"

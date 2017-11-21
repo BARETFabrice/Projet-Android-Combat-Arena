@@ -1,4 +1,4 @@
-var JeuVue = function()
+const JeuVue = function()
 {
     var combatArenaJeu;
     
