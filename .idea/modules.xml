@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\1531831\Desktop\Session 5\mobile\programmation-mobile-projet-phonegap-CombatArena-2017\CombatArena.iml" filepath="C:\Users\1531831\Desktop\Session 5\mobile\programmation-mobile-projet-phonegap-CombatArena-2017\CombatArena.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/programmation-mobile-projet-phonegap-CombatArena-2017.iml" filepath="$PROJECT_DIR$/programmation-mobile-projet-phonegap-CombatArena-2017.iml" />
     </modules>

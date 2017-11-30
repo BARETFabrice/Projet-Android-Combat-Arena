@@ -16,7 +16,8 @@
     {
         pageAccueil : document.getElementById("page-accueil-combat-arena").innerHTML,
         pageInscription : document.getElementById("page-inscription-combat-arena").innerHTML,
-        pageJeu : document.getElementById("page-jeu-combat-arena").innerHTML
+        pageJeu : document.getElementById("page-jeu-combat-arena").innerHTML,
+		pageFinPartie : document.getElementById("page-fin-partie-arena").innerHTML
     };
     
     Application.Page.initialiser = function()
@@ -36,6 +37,10 @@
         else if(new RegExp(/^#inscription/).test(ancre))
         {
             inscriptionVue = new InscriptionVue();
+        }
+		else if(new RegExp(/^#fin-partie/).test(ancre))
+        {
+            finPartieVue = new FinPartieVue();
         }
         else if(new RegExp(/^#lancer-jeu/).test(ancre))
         {
