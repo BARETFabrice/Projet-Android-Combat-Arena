@@ -23,12 +23,24 @@ Il y a une erreur dans le programme
 				<fieldset>
 					<legend>Inscription</legend>
 					<div>
-						<label for="nom">Nom d'utilisateur</label>
+						<label for="nom">Nom d'utilisateur : </label>
 						<input type="text" name="nom" id="nom"/>
 					</div>
 					<div>
-						<label for="motdepasse">Mot de passe</label>
-						<input type="password" name="motdepasse" id="motdepasse"/>
+						<label for="mot-de-passe">Mot de passe : </label>
+						<input type="password" name="mot-de-passe" id="mot-de-passe"/>
+					</div>
+					<div>
+						<label for="age">Age : </label>
+						<input type="number" name="age" id="age"/>
+					</div>
+					<div>
+						<label for="couleur-logo">Couleur du logo : </label>
+						<input type="color" name="couleur-logo" id="couleur-logo"/>
+					</div>
+					<div>
+						<label for="volume">Volume : </label>
+						<input type="range" min="0" max="100" name="volume" id="volume"/>
 					</div>
 				 </fieldset>
 				<input type="submit" value="S'inscrire"/>

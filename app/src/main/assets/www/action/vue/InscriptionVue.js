@@ -6,10 +6,12 @@ const InscriptionVue = function()
 		document.getElementById("formulaire-inscription").addEventListener("submit", function(evenement){
 			alert("Inscription faite!");
 			evenement.preventDefault();
-			//Encrypter mot de passe
-			//Envoyer au service web
-			//	si c'est bon --> Localstore updateCommands
-			//	si ce n'est pas bon --> retour à la page inscription avec alert
+			var nom = document.getElementById("nom").value;
+			var motDePasse = md5(document.getElementById("mot-de-passe").value);
+			var age = document.getElementById("age").value;
+			var couleurLogo = document.getElementById("couleur-logo").value;
+			var volume = document.getElementById("volume").value;
+			alert(motDePasse);
 			window.location.hash = "#";
 		});
     }
