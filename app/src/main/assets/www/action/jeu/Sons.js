@@ -12,7 +12,8 @@
 	var loadHowlSound = function(id)
 	{
 		loadedSounds[id]= new Howl({
-			src: [PATH + soundList[id]]
+			src: [PATH + soundList[id]],
+			html5:false
 		});
 	};
 	
@@ -34,8 +35,6 @@
 				loadHowlSound(id);
 			
 			loadedSounds[id].play();
-			playingSounds.push(loadedSounds[id]);			
-			loadedSounds[id].once("end",function(i){ playingSounds.splice(playingSounds.indexOf(loadedSounds[id]),1); });
 		},
 
 		playMusic: function(id)

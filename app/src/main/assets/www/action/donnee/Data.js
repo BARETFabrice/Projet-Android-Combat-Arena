@@ -11,7 +11,7 @@ const Data ={
 	},
 	son:{
 		click:"click.wav",
-		theme_menu:"FindYou.flac"
+		theme_menu:"FindYou.mp3"
 	},
 	texte:{
 		nom_jeu:"Combat Arena"
