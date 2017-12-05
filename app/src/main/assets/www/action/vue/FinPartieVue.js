@@ -36,7 +36,7 @@ const FinPartieVue = function()
 				]
 			},
 			options: {
-				responsive: true
+				responsive: false
 			}
 		};
 

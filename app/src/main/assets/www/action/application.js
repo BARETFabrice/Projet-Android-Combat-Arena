@@ -40,6 +40,7 @@
         }
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
+			Sons.playMusic("theme_menu");
             finPartieVue = new FinPartieVue();
         }
         else if(new RegExp(/^#lancer-jeu/).test(ancre))
@@ -48,6 +49,7 @@
         }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
+			Sons.playMusic("theme_combat");
             jeuVue = new JeuVue();
         }
 		else{
