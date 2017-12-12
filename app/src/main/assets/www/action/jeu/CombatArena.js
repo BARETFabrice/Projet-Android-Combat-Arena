@@ -33,6 +33,7 @@ var CombatArena = function()
         ticker.start();
         
         combatArenaCommande = new CombatArenaCommande(app);
+        //deactiver event
     }
     
     function rafraichir(deltaTime)

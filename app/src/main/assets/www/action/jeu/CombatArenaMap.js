@@ -33,6 +33,8 @@ var CombatArenaMap = function(pixiApp)
             console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");
             dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);
         }
+        
+        
     }
     
     initialiser();
