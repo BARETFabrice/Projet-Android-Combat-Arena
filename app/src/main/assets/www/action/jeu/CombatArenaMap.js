@@ -33,7 +33,7 @@ var CombatArenaMap = function(pixiApp)
             mapConteneur.addChild(map);
             pixiApp.stage.addChild(mapConteneur);
             
-            var mondeTextures = new PIXI.BaseTexture.fromImage(Configuration.cheminImage + CombatArenaMap.Configuration.image.mondeObj);
+            var mondeTextures = new PIXI.BaseTexture.fromImage(Configuration.cheminImage + CombatArenaMap.Configuration.image.mondeObj.image);
             
             /*var solTexture01 = new PIXI.Texture(mondeTextures, new PIXI.Rectangle(0, 0, 319, 100));
             var sol01 = new PIXI.Sprite(solTexture01);
@@ -47,19 +47,20 @@ var CombatArenaMap = function(pixiApp)
             {
                 tabSpriteSol01.push(
                     new PIXI.Sprite(
-                        new PIXI.Texture(mondeTextures, new PIXI.Rectangle(0, 0, 319, 100))));
+                        new PIXI.Texture(mondeTextures, 
+                                         new PIXI.Rectangle(CombatArenaMap.Configuration.image.mondeObj.sol01.posX, 
+                                                            CombatArenaMap.Configuration.image.mondeObj.sol01.posY, 
+                                                            CombatArenaMap.Configuration.image.mondeObj.sol01.largeur, CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur))));
                 
                 mapConteneur.addChild(tabSpriteSol01[i]);
-                tabSpriteSol01[i].position.x = (i * 319) - 30;
-                tabSpriteSol01[i].position.y = 7560;
+                tabSpriteSol01[i].position.x = (i * CombatArenaMap.Configuration.image.mondeObj.sol01.largeur) - 30;
+                tabSpriteSol01[i].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur;
             }
             
             
             console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");
             dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);
         }
-        
-        
     }
     
     initialiser();
@@ -72,7 +73,7 @@ var CombatArenaMap = function(pixiApp)
     this.deplacerMondeVersPosition = function(position)
     {
         positionX =  - position.x;
-        positionY =  - position.y + 380;
+        positionY =  - position.y + 320;
     };
     
     this.rafraichir = function()
@@ -87,7 +88,17 @@ CombatArenaMap.Configuration =
     image:
     {
         arrierPlan : "combat-arena-arrier-plan.png",
-        mondeObj : "combat-arena-monde-obj.png"
+        mondeObj : 
+        {
+            image : "combat-arena-monde-obj.png",
+            sol01 :
+            {
+                posX : 0,
+                posY : 24,
+                hauteur : 57,
+                largeur : 319
+            }
+        }
     },
     positionX : 0,
     positionY : 0,

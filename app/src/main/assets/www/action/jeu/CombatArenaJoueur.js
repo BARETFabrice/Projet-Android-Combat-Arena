@@ -20,8 +20,8 @@ var CombatArenaJoueur = function(combatArenaMap)
         positionX = CombatArenaJoueur.Configuration.positionX;
         positionY = CombatArenaJoueur.Configuration.positionY;
         
-        console.log("height carte " + combatArenaMap.height);
-        console.log("width carte " + combatArenaMap.width);
+        //console.log("height carte " + combatArenaMap.height);
+        //console.log("width carte " + combatArenaMap.width);
         
         joueurConteneur.addChild(joueurSprite);
         combatArenaMap.addChild(joueurConteneur);
