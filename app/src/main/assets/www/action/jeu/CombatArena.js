@@ -1,25 +1,77 @@
 var CombatArena = function()
 {
+    var app;
+    var combatArenaMap;
+    var combatArenaJoueur;
+    var combatArenaCommande;
+    
     function initialiser()
     {
         //console.log("lancement du jeu");
         
-        var app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
+        app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
         document.body.appendChild(app.view);
-
-        var bunny = PIXI.Sprite.fromImage('asset/image/bunny.png');
-
-        bunny.anchor.set(0.5);
-
-        bunny.x = app.renderer.width / 2;
-        bunny.y = app.renderer.height / 2;
-
-        app.stage.addChild(bunny);
-
-        app.ticker.add(function(delta) {
-            bunny.rotation += 0.1 * delta;
-        });
+        
+        addEventListener(Evenement.finChargementSpriteCombatArenaMap.type, chargementDesJoueur);
+        addEventListener(Evenement.finChargementCombatArena.type, commencerCombatArena);
+        
+        combatArenaMap = new CombatArenaMap(app);
     }
     
     initialiser();
+    
+    function chargementDesJoueur()
+    {
+        combatArenaJoueur = new CombatArenaJoueur(combatArenaMap.getMapConteneur());
+    }
+    
+    function commencerCombatArena()
+    {
+        const ticker = new PIXI.ticker.Ticker();
+        ticker.stop();
+        ticker.add(rafraichir);
+        ticker.start();
+        
+        combatArenaCommande = new CombatArenaCommande(app);
+    }
+    
+    function rafraichir(deltaTime)
+    {
+        if(combatArenaCommande.isActionSurFlecheDroite())
+        {
+            combatArenaJoueur.deplacementADroite();
+        }
+        else if(combatArenaCommande.isActionSurFlecheGauche())
+        {
+            combatArenaJoueur.deplacementAGauche();
+        }
+        
+        combatArenaJoueur.rafraichir();
+    }
 };
+
+CombatArena.Configuration =
+{
+    cheminImage: "asset/image/"
+};
+
+CombatArena.Configuration.initialiser = function()
+{
+    window['Configuration'] = CombatArena.Configuration;
+}();
+
+CombatArena.Evenement = 
+{
+    finChargementSpriteCombatArenaMap : document.createEvent('Event'),
+    finChargementCombatArena : document.createEvent('Event')
+};
+
+CombatArena.Evenement.initialiser = function()
+{
+    for(key in CombatArena.Evenement)
+    {
+        if(CombatArena.Evenement[key] instanceof Event)
+        CombatArena.Evenement[key].initEvent(key, false, true);
+    }
+    window['Evenement'] = CombatArena.Evenement;
+}();
