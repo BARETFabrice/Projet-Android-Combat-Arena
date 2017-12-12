@@ -6,6 +6,10 @@
     
     function Application()
     {
+		window.onerror = function(msg, url, linenumber) {
+			alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+			return true;
+		}
 		Sons.playMusic("theme_menu");
         window.onhashchange=Application.naviguer;
         window.location.hash="#";
