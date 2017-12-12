@@ -48,6 +48,12 @@ var CombatArena = function()
         }
         
         combatArenaJoueur.rafraichir();
+        
+        /*console.log("Position player = x:" + combatArenaJoueur.getPositionJoueur().x + ", y:" + combatArenaJoueur.getPositionJoueur().y);*/
+        
+        combatArenaMap.deplacerMondeVersPosition(combatArenaJoueur.getPositionJoueur());
+        
+        combatArenaMap.rafraichir();
     }
 };
 

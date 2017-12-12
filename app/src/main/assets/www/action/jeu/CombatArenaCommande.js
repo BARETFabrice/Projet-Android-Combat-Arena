@@ -56,7 +56,7 @@ var CombatArenaCommande = function(pixiApp)
     this.isActionSurFlecheDroite = function()
     {
         return actionSurFlecheDroite;
-    }
+    };
     
     function flecheGaucheEnAction()
     {
@@ -71,7 +71,7 @@ var CombatArenaCommande = function(pixiApp)
     this.isActionSurFlecheGauche = function()
     {
         return actionSurFlecheGauche;
-    }
+    };
 };
 
 CombatArenaCommande.Configuration = 

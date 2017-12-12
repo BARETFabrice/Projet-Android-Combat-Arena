@@ -43,30 +43,37 @@ var CombatArenaJoueur = function(combatArenaMap)
     this.deplacementADroite = function()
     {
         positionX += CombatArenaJoueur.Configuration.vitesseDeDeplacement;
-    }
+    };
     
     this.deplacementAGauche = function()
     {
          positionX -= CombatArenaJoueur.Configuration.vitesseDeDeplacement;
-    }
+    };
     
     this.rafraichir = function()
     {
         joueurConteneur.x = positionX;
         joueurConteneur.y = positionY;
-    }
+    };
+    
+    this.getPositionJoueur = function()
+    {
+        return {
+            x : positionX,
+            y : positionY
+        };
+    };
 };
 
 CombatArenaJoueur.Configuration = 
 {
     image:
     {
-        cheminImage: "asset/image/",
         image: "bunny.png",
         positionX : 0,
         positionY : 0
     },
     positionX : 0,
-    positionY : 7480,
+    positionY : 7420,
     vitesseDeDeplacement : 12
 }
