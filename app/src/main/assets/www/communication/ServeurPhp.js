@@ -10,15 +10,13 @@ const ServeurPhp={
 				return;
 			}
 			
-			//ServeurPhp.connexion(nom, mdp);
+			ServeurPhp.connexion(nom, mdp);
 			
 		};
 		
 		couleur=couleur.slice(1);
 		
 		var url="http://fredericsimoneau.com/combat-arena/inscription.php?nom="+nom+"&motdepasse="+mdp+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&email=test@test.com";
-		
-		console.log(url);
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
@@ -47,12 +45,17 @@ const ServeurPhp={
 		
 	},
 	
+	modifierProfil:function(nom,age,couleur,volume,courriel){
+		
+	},
+	
 	envoyerRequeteAjax:function(url, fonctionApres){
 		
 		if(!url){
 			console.error("veuillez fournir un url");
 			return;
 		}
+		console.log(url);
 		
 		if(!fonctionApres)
 			fonctionApres=function(e){console.log(e);};

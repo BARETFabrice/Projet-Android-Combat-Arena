@@ -19,7 +19,6 @@ const Data ={
 	},
 	
 	joueur:{
-		nom:null,
 		id:null,
 		token:null
 	}

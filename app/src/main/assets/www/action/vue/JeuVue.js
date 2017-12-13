@@ -2,14 +2,10 @@ const JeuVue = function()
 {
     var combatArenaJeu;
     
-    function initialiser()
+    this.initialiser=function()
     {
         document.querySelector("body").innerHTML = Page.pageJeu;
         
         combatArena = CombatArena();
-    }
-    
-    initialiser();
-    
-    
+    }   
 };

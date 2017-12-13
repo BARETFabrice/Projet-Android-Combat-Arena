@@ -1,8 +1,10 @@
 (function()
  {
     var accueilVue;
+    var profilVue;
     var inscriptionVue;
     var jeuVue;
+    var connecterVue;
     
     function Application()
     {
@@ -19,6 +21,8 @@
     Application.Page = 
     {
         pageAccueil : document.getElementById("page-accueil-combat-arena").innerHTML,
+        pageConnecter : document.getElementById("page-connecter-combat-arena").innerHTML,
+        pageProfil : document.getElementById("page-profil-combat-arena").innerHTML,
         pageInscription : document.getElementById("page-inscription-combat-arena").innerHTML,
         pageJeu : document.getElementById("page-jeu-combat-arena").innerHTML,
 		pageFinPartie : document.getElementById("page-fin-partie-arena").innerHTML
@@ -36,11 +40,23 @@
 		
 		if(!ancre)
 		{
-			accueilVue = new AccueilVue();
+			if(!accueilVue) accueilVue = new AccueilVue();
+			accueilVue.initialiser();
 		}
         else if(new RegExp(/^#inscription/).test(ancre))
         {
-            inscriptionVue = new InscriptionVue();
+            if(!inscriptionVue) inscriptionVue = new InscriptionVue();
+			inscriptionVue.initialiser();
+        }
+		else if(new RegExp(/^#profil/).test(ancre))
+        {
+            if(!profilVue) profilVue = new ProfilVue();
+			profilVue.initialiser();
+        }
+		else if(new RegExp(/^#connexion/).test(ancre))
+        {
+            if(!connecterVue) connecterVue = new ConnecterVue();
+			connecterVue.initialiser();
         }
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
@@ -54,7 +70,8 @@
         else if(new RegExp(/^#jeu/).test(ancre))
         {
 			Sons.playMusic("theme_combat");
-            jeuVue = new JeuVue();
+            if(!jeuVue) jeuVue = new JeuVue();
+			jeuVue.initialiser();
         }
 		else{
 			ancre="#"

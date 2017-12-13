@@ -1,8 +1,7 @@
 const AccueilVue = function()
 {
-    function initialiser()
+    this.initialiser=function()
     {
         document.querySelector("body").innerHTML = Page.pageAccueil;
     }
-    initialiser();
 };

@@ -87,7 +87,7 @@ CombatArenaCommande.Configuration =
         flecheDroite :
         {
             image : "fleche-droite.png",
-            positionX : 100,
+            positionX : 200,
             positionY : 0
         }
     }
