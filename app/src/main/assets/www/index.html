@@ -24,23 +24,27 @@ Il y a une erreur dans le programme
 					<legend>Inscription</legend>
 					<div>
 						<label for="nom">Nom d'utilisateur : </label>
-						<input type="text" name="nom" id="nom"/>
+						<input type="text" name="nom" required id="nom"/>
+					</div>
+					<div>
+						<label for="courriel">Courriel : </label>
+						<input type="email" name="courriel" required id="courriel"/>
 					</div>
 					<div>
 						<label for="mot-de-passe">Mot de passe : </label>
-						<input type="password" name="mot-de-passe" id="mot-de-passe"/>
+						<input type="password" name="mot-de-passe" required id="mot-de-passe"/>
 					</div>
 					<div>
 						<label for="age">Age : </label>
-						<input type="number" name="age" id="age"/>
+						<input type="number" name="age" required id="age"/>
 					</div>
 					<div>
 						<label for="couleur-logo">Couleur du logo : </label>
-						<input type="color" name="couleur-logo" id="couleur-logo"/>
+						<input type="color" name="couleur-logo" required id="couleur-logo"/>
 					</div>
 					<div>
 						<label for="volume">Volume : </label>
-						<input type="range" min="0" max="100" name="volume" id="volume"/>
+						<input type="range" min="0" required max="100" name="volume" id="volume"/>
 					</div>
 				 </fieldset>
 				<input type="submit" value="S'inscrire"/>
@@ -69,7 +73,7 @@ Il y a une erreur dans le programme
     <script type="text/javascript" charset="utf-8" src="lib/socket.io.js"></script>
 	<script type="text/javascript" charset="utf-8" src="lib/md5.min.js"></script>
 
-	<script type="text/javascript" charset="utf-8" src="communication/Serveur.js"></script>
+	<script type="text/javascript" charset="utf-8" src="communication/ServeurPhp.js"></script>
     
 	<script src="action/donnee/Data.js"></script>
 	
