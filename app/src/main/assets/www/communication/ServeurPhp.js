@@ -2,10 +2,10 @@ const ServeurPhp={
 	
 	inscription:function(nom,mdp,age,couleur,volume,courriel){
 		
-		var apres=function(reussi){			
+		var apres=function(objet){			
 			
-			if(!reussi){
-				console.log(reussi);
+			if(objet.error){
+				console.log(objet);
 				//handleEvent
 				return;
 			}
@@ -22,23 +22,49 @@ const ServeurPhp={
 	},
 	
 	connexion:function(nom, mdp){
+		
 		var apres=function(objet){
-			
+				
 			console.log(objet);
 			
 			if(objet.error){
 				//handleEvent
 				return;
 			}
+			
+			Data.joueur=objet;
+			
+			localStorage['combat-arena-token']=JSON.stringify(Data.joueur.token);
+			localStorage['combat-arena-id']=JSON.stringify(Data.joueur.id);
 		};
 		
-		var url="http://fredericsimoneau.com/combat-arena/login.php?nom="+nom+"&motdepasse="+mdp;
+		var url="http://fredericsimoneau.com/combat-arena/connexion.php?nom="+nom+"&motdepasse="+mdp;
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
 	
-	connexionToken:function(token){
+	connexionToken:function(){
+		if(!localStorage['combat-arena-token'] || !localStorage['combat-arena-id'])
+			return;
 		
+		var token = JSON.parse(localStorage['combat-arena-token']);
+		var id = JSON.parse(localStorage['combat-arena-id']);
+		
+		var apres=function(objet){
+				
+			console.log(objet);
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+			
+			Data.joueur=objet;
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/connexionParToken.php?id="+id+"&token="+token;
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
 	
 	deconnexion:function(){

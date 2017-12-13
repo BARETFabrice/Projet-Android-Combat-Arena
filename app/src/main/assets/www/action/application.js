@@ -12,6 +12,7 @@
 			alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
 			return true;
 		}*/
+		ServeurPhp.connexionToken();
 		Sons.playMusic("theme_menu");
         window.onhashchange=Application.naviguer;
         window.location.hash="#";
