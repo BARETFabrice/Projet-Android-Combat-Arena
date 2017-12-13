@@ -68,7 +68,8 @@ const ServeurPhp={
 	},
 	
 	deconnexion:function(){
-		
+		delete localStorage['combat-arena-token'];
+		delete localStorage['combat-arena-id'];
 	},
 	
 	modifierProfil:function(nom,age,couleur,volume,courriel){

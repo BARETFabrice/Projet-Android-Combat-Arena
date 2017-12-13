@@ -59,6 +59,11 @@
             if(!connecterVue) connecterVue = new ConnecterVue();
 			connecterVue.initialiser();
         }
+		else if(new RegExp(/^#deconnexion/).test(ancre))
+        {
+            ServeurPhp.deconnexion();
+			location.reload();
+        }
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
 			Sons.playMusic("theme_menu");
