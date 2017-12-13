@@ -16,7 +16,30 @@ const ServeurPhp={
 		
 		couleur=couleur.slice(1);
 		
-		var url="http://fredericsimoneau.com/combat-arena/inscription.php?nom="+nom+"&motdepasse="+mdp+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&email=test@test.com";
+		var url="http://fredericsimoneau.com/combat-arena/inscription.php?nom="+nom+"&motdepasse="+mdp+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&email="+courriel;
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	modifierProfil:function(nom,age,couleur,volume,courriel){
+		var apres=function(objet){			
+			
+			if(objet.error){
+				console.log(objet);
+				//handleEvent
+				return;
+			}
+			
+			Data.joueur=objet;
+		};
+		
+		Data.joueur.age=age;
+		Data.joueur.couleur_logo=couleur;
+		Data.joueur.volume=volume;
+		
+		couleur=couleur.slice(1);
+		
+		var url="http://fredericsimoneau.com/combat-arena/modifierUtilisateur.php?nom="+nom+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&courriel="+courriel;
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
@@ -50,6 +73,9 @@ const ServeurPhp={
 		var token = JSON.parse(localStorage['combat-arena-token']);
 		var id = JSON.parse(localStorage['combat-arena-id']);
 		
+		Data.joueur.id=id;
+		Data.joueur.token=token;
+		
 		var apres=function(objet){
 				
 			console.log(objet);
@@ -70,10 +96,21 @@ const ServeurPhp={
 	deconnexion:function(){
 		delete localStorage['combat-arena-token'];
 		delete localStorage['combat-arena-id'];
-	},
-	
-	modifierProfil:function(nom,age,couleur,volume,courriel){
 		
+		if(!Data.joueur.id)
+			return;
+		
+		var apres=function(objet){
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/deconnexion.php?id="+Data.joueur.id;
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
 	
 	envoyerRequeteAjax:function(url, fonctionApres){

@@ -1,6 +1,5 @@
 (function()
  {
-    var accueilVue;
     var profilVue;
     var inscriptionVue;
     var jeuVue;
@@ -41,8 +40,7 @@
 		
 		if(!ancre)
 		{
-			if(!accueilVue) accueilVue = new AccueilVue();
-			accueilVue.initialiser();
+			AccueilVue.initialiser();
 		}
         else if(new RegExp(/^#inscription/).test(ancre))
         {
