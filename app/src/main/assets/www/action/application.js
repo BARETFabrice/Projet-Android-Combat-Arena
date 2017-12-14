@@ -22,6 +22,7 @@
     {
         pageAccueil : document.getElementById("page-accueil-combat-arena").innerHTML,
         pageConnecter : document.getElementById("page-connecter-combat-arena").innerHTML,
+        pageClassements : document.getElementById("page-classements-combat-arena").innerHTML,
         pageProfil : document.getElementById("page-profil-combat-arena").innerHTML,
         pageInscription : document.getElementById("page-inscription-combat-arena").innerHTML,
         pageJeu : document.getElementById("page-jeu-combat-arena").innerHTML,
@@ -49,7 +50,9 @@
         }
 		else if(new RegExp(/^#profil/).test(ancre))
         {
-            if(!profilVue) profilVue = new ProfilVue();
+            if(!Data.joueur.id) window.location.hash="#";
+			
+			if(!profilVue) profilVue = new ProfilVue();
 			profilVue.initialiser();
         }
 		else if(new RegExp(/^#connexion/).test(ancre))
@@ -62,23 +65,39 @@
             ServeurPhp.deconnexion();
 			AccueilVue.initialiser();
         }
+		else if(new RegExp(/^#classements\/temps/).test(ancre))
+        {
+			ServeurPhp.classementsTemps();
+        }
+		else if(new RegExp(/^#classements\/victoires/).test(ancre))
+        {
+			ServeurPhp.classementsVictoires();
+        }
+		else if(new RegExp(/^#classements\/chutes/).test(ancre))
+        {
+			ServeurPhp.classementsMorts();
+        }
+		else if(new RegExp(/^#classements/).test(ancre))
+        {
+			ClassementsVue.initialiser();
+        }
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
+			if(!Data.joueur.id) window.location.hash="#";
+			
 			Sons.playMusic("theme_menu");
             finPartieVue = new FinPartieVue();
         }
-        else if(new RegExp(/^#lancer-jeu/).test(ancre))
-        {
-            window.location.hash = "#jeu";
-        }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
+			if(!Data.joueur.id) window.location.hash="#";
+			
 			Sons.playMusic("theme_combat");
             if(!jeuVue) jeuVue = new JeuVue();
 			jeuVue.initialiser();
         }
 		else{
-			ancre="#"
+			window.location.hash="#";
 		}
     };
     

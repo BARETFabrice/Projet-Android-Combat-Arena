@@ -15,7 +15,7 @@ Il y a une erreur dans le programme
             <a href="#connexion">Connexion</a>
 		</span>
 		<span id="page-accueil-apres">
-            <a href="#lancer-jeu">Jouer</a>
+            <a href="#jeu">Jouer</a>
             <a href="#profil">Profil</a>
 			<a href="#deconnexion">Deconnecter</a>
         </span>
@@ -24,7 +24,6 @@ Il y a une erreur dans le programme
             <a href="#classements">Classements</a>
         </span>
     </script>
-	
 	
     
      <script id="page-inscription-combat-arena" type="text/plain">
@@ -117,6 +116,19 @@ Il y a une erreur dans le programme
             <a href="#">Retour vers accueil<a>
         </div>
     </script>
+	
+	<script id="page-classements-combat-arena" type="text/plain">
+        <h1>Classements</h1>
+        <div>
+		
+			<a href="#classements/temps">Temps</a>
+			<a href="#classements/victoires">Victoires</a>
+			<a href="#classements/chutes">Chutes</a>
+			<ol id="liste-classement" type="1">
+			</ol>
+            <a href="#">Retour vers accueil<a>
+        </div>
+    </script>
     
     <script id="page-jeu-combat-arena" type="text/plain">
         <h1>Canvas Jeu</h1>
@@ -150,6 +162,7 @@ Il y a une erreur dans le programme
 	<script src="action/jeu/Sons.js"></script>
     
     <script src="action/vue/JeuVue.js"></script>
+    <script src="action/vue/ClassementsVue.js"></script>
     <script src="action/vue/ProfilVue.js"></script>
     <script src="action/vue/ConnecterVue.js"></script>
     <script src="action/vue/InscriptionVue.js"></script>

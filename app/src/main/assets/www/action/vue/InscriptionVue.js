@@ -2,7 +2,7 @@ const InscriptionVue = function()
 {
     this.initialiser=function()
     {
-        document.querySelector("body").innerHTML = Page.pageInscription;
+        document.body.innerHTML = Page.pageInscription;
 		document.getElementById("formulaire-inscription").addEventListener("submit", function(evenement){
 			
 			evenement.preventDefault();

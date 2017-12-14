@@ -48,10 +48,10 @@ const ServeurPhp={
 	connexion:function(nom, mdp){
 		
 		var apres=function(objet){
-				
-			console.log(objet);
+			
 			
 			if(objet.error){
+				console.log(objet);
 				//handleEvent
 				return;
 			}
@@ -84,9 +84,8 @@ const ServeurPhp={
 		
 		var apres=function(objet){
 				
-			console.log(objet);
-			
 			if(objet.error){
+				console.log(objet);
 				//handleEvent
 				return;
 			}
@@ -119,6 +118,7 @@ const ServeurPhp={
 		
 		delete Data.joueur;
 		Data.joueur={};
+		Sons.setVolume(1);
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
@@ -143,6 +143,8 @@ const ServeurPhp={
 	classementsVictoires:function(){
 		var apres=function(objet){
 			
+			console.log(objet);
+			
 			if(objet.error){
 				//handleEvent
 				return;
@@ -156,6 +158,8 @@ const ServeurPhp={
 	
 	classementsTemps:function(){
 		var apres=function(objet){
+			
+			console.log(objet);
 			
 			if(objet.error){
 				//handleEvent
@@ -171,13 +175,15 @@ const ServeurPhp={
 	classementsMorts:function(){
 		var apres=function(objet){
 			
+			console.log(objet);
+			
 			if(objet.error){
 				//handleEvent
 				return;
 			}
 		};
 		
-		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParMorts.php";
+		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParChutes.php";
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},

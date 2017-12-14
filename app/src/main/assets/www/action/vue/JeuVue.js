@@ -4,7 +4,7 @@ const JeuVue = function()
     
     this.initialiser=function()
     {
-        document.querySelector("body").innerHTML = Page.pageJeu;
+        document.body.innerHTML = Page.pageJeu;
         
         combatArena = CombatArena();
     }   

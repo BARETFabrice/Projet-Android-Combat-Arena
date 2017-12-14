@@ -2,7 +2,7 @@ const ProfilVue = function()
 {
     this.initialiser=function()
     {
-        document.querySelector("body").innerHTML = Page.pageProfil;
+        document.body.innerHTML = Page.pageProfil;
 		
 		document.getElementById("nom").value=Data.joueur.nom;
 		document.getElementById("age").value=Data.joueur.age;

@@ -2,7 +2,7 @@ const ConnecterVue = function()
 {
     this.initialiser=function()
     {
-        document.querySelector("body").innerHTML = Page.pageConnecter;
+        document.body.innerHTML = Page.pageConnecter;
 		document.getElementById("formulaire-connecter").addEventListener("submit", function(evenement){
 			
 			evenement.preventDefault();
