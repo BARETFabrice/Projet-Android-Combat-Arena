@@ -36,6 +36,9 @@ const ServeurPhp={
 		Data.joueur.age=age;
 		Data.joueur.couleur_logo=couleur;
 		Data.joueur.volumeSon=volume;
+		
+		//document.body.style.backgroundColor=couleur;
+		//document.body.style.color=couleurOpposee(couleur);
 		Sons.setVolume(volume/100)
 		
 		couleur=couleur.slice(1);
@@ -58,6 +61,8 @@ const ServeurPhp={
 			
 			Data.joueur=objet;
 			Sons.setVolume(Data.joueur.volumeSon/100)
+			//document.body.style.backgroundColor=Data.joueur.couleur_logo;
+			//document.body.style.color=couleurOpposee(Data.joueur.couleur_logo);
 			
 			localStorage['combat-arena-token']=JSON.stringify(Data.joueur.token);
 			localStorage['combat-arena-id']=JSON.stringify(Data.joueur.id);
@@ -92,6 +97,8 @@ const ServeurPhp={
 			
 			Data.joueur=objet;
 			Sons.setVolume(Data.joueur.volumeSon/100)
+			//document.body.style.backgroundColor=Data.joueur.couleur_logo;
+			//document.body.style.color=couleurOpposee(Data.joueur.couleur_logo);
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/connexionParToken.php?id="+id+"&token="+token;
@@ -119,6 +126,8 @@ const ServeurPhp={
 		delete Data.joueur;
 		Data.joueur={};
 		Sons.setVolume(1);
+		//document.body.style.backgroundColor="white";
+		//document.body.style.color="black";
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
