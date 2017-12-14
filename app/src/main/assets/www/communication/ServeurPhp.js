@@ -35,11 +35,11 @@ const ServeurPhp={
 		
 		Data.joueur.age=age;
 		Data.joueur.couleur_logo=couleur;
-		Data.joueur.volume=volume;
+		Data.joueur.volumeSon=volume;
 		
 		couleur=couleur.slice(1);
 		
-		var url="http://fredericsimoneau.com/combat-arena/modifierUtilisateur.php?nom="+nom+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&courriel="+courriel;
+		var url="http://fredericsimoneau.com/combat-arena/modifierUtilisateur.php?id="+Data.joueur.id+"&nom="+nom+"&age="+age+"&couleur="+couleur+"&volume="+volume+"&courriel="+courriel;
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
