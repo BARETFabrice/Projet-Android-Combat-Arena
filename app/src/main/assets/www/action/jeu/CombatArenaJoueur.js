@@ -51,10 +51,15 @@ var CombatArenaJoueur = function(combatArenaMap)
          positionX -= CombatArenaJoueur.Configuration.vitesseDeDeplacement;
     };
     
+    this.faireUnSaut = function()
+    {
+        positionY -= CombatArenaJoueur.Configuration.pousseeSaut;
+    };
+    
     this.setJoueurEnChuteLibre = function(Boolean)
     {
         isJoueurEnChuteLibre = Boolean;
-    }
+    };
     
     this.rafraichir = function()
     {
@@ -80,7 +85,7 @@ var CombatArenaJoueur = function(combatArenaMap)
         if(colision(sprite, joueurConteneur)) return true;
         
         return false;
-    }
+    };
     
     function colision(r1, r2)
     {
@@ -105,5 +110,6 @@ CombatArenaJoueur.Configuration =
     positionX : 0,
     positionY : 7440,
     vitesseDeDeplacement : 12,
-    vitesseDeChute : -10
+    vitesseDeChute : -10,
+    pousseeSaut : 20
 }

@@ -44,7 +44,7 @@ var CombatArenaMap = function(pixiApp)
             
             tabSpriteSol = new Array();
             
-            var nombreDeSrpiteSol01 = 15;
+            var nombreDeSrpiteSol01 = 4;
             var tabSpriteSol01 = new Array();
             for(var i = 0; i < nombreDeSrpiteSol01; i++)
             {
@@ -61,6 +61,16 @@ var CombatArenaMap = function(pixiApp)
                 
                 tabSpriteSol.push(tabSpriteSol01[i]);
             }
+            
+            tabSpriteSol.push(new PIXI.Sprite(
+                        new PIXI.Texture(mondeTextures, 
+                                         new PIXI.Rectangle(CombatArenaMap.Configuration.image.mondeObj.sol01.posX, 
+                                                            CombatArenaMap.Configuration.image.mondeObj.sol01.posY, 
+                                                            CombatArenaMap.Configuration.image.mondeObj.sol01.largeur, CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur))));
+            
+            mapConteneur.addChild(tabSpriteSol[tabSpriteSol01.length]);
+            tabSpriteSol[tabSpriteSol01.length].position.x = 0;
+            tabSpriteSol[tabSpriteSol01.length].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur - 250;
             
             
             console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");

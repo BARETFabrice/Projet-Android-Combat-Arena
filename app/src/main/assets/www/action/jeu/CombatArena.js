@@ -64,6 +64,11 @@ var CombatArena = function()
             combatArenaJoueur.deplacementAGauche();
         }
         
+        if(combatArenaCommande.isActionSurFlecheHaut())
+        {
+            combatArenaJoueur.faireUnSaut();
+        }
+        
         combatArenaJoueur.rafraichir();
         
         /*console.log("Position player = x:" + combatArenaJoueur.getPositionJoueur().x + ", y:" + combatArenaJoueur.getPositionJoueur().y);*/
