@@ -59,6 +59,10 @@ const ServeurPhp={
 			
 			localStorage['combat-arena-token']=JSON.stringify(Data.joueur.token);
 			localStorage['combat-arena-id']=JSON.stringify(Data.joueur.id);
+			
+			if(!window.location.hash){
+				AccueilVue.initialiser();
+			}
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/connexion.php?nom="+nom+"&motdepasse="+mdp;
@@ -93,7 +97,7 @@ const ServeurPhp={
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
 	
-	deconnexion:function(){
+	deconnexion:function(id){
 		delete localStorage['combat-arena-token'];
 		delete localStorage['combat-arena-id'];
 		
@@ -109,6 +113,51 @@ const ServeurPhp={
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/deconnexion.php?id="+Data.joueur.id;
+		
+		delete Data.joueur;
+		Data.joueur={};
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	classementsVictoires:function(){
+		var apres=function(objet){
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParVictoires.php";
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	classementsTemps:function(){
+		var apres=function(objet){
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParTemps.php";
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	classementsMorts:function(){
+		var apres=function(objet){
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParMorts.php";
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},

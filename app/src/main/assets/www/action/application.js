@@ -60,7 +60,7 @@
 		else if(new RegExp(/^#deconnexion/).test(ancre))
         {
             ServeurPhp.deconnexion();
-			location.reload();
+			AccueilVue.initialiser();
         }
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
