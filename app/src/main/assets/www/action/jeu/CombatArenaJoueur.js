@@ -108,8 +108,8 @@ CombatArenaJoueur.Configuration =
         positionY : 0
     },
     positionX : 0,
-    positionY : 7440,
+    positionY : 1211,
     vitesseDeDeplacement : 12,
-    vitesseDeChute : -10,
-    pousseeSaut : 20
+    vitesseDeChute : -15,
+    pousseeSaut : 30
 }
