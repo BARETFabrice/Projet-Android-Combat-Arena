@@ -36,6 +36,7 @@ const ServeurPhp={
 		Data.joueur.age=age;
 		Data.joueur.couleur_logo=couleur;
 		Data.joueur.volumeSon=volume;
+		Sons.setVolume(volume/100)
 		
 		couleur=couleur.slice(1);
 		
@@ -56,6 +57,7 @@ const ServeurPhp={
 			}
 			
 			Data.joueur=objet;
+			Sons.setVolume(Data.joueur.volumeSon/100)
 			
 			localStorage['combat-arena-token']=JSON.stringify(Data.joueur.token);
 			localStorage['combat-arena-id']=JSON.stringify(Data.joueur.id);
@@ -90,6 +92,7 @@ const ServeurPhp={
 			}
 			
 			Data.joueur=objet;
+			Sons.setVolume(Data.joueur.volumeSon/100)
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/connexionParToken.php?id="+id+"&token="+token;
@@ -116,6 +119,23 @@ const ServeurPhp={
 		
 		delete Data.joueur;
 		Data.joueur={};
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	terminerPartie:function(victoire, chutes, temps){
+		var apres=function(objet){
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+		};
+		
+		if(victoire) 	victoire=1;
+		else			victoire=0;
+		
+		var url="http://fredericsimoneau.com/combat-arena/ajoutPartie.php?id="+Data.joueur.id+"&victoire="+victoire+"&chutes="+chutes+"&duree="+temps;
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
