@@ -64,14 +64,14 @@ const ClassementsVue={
 			
 			if(hr>0){
 				bool=true;
-				string+=hr + "heures ";
+				string+=hr + " heures ";
 			}
 			
 			if(min>0 || bool){
 				bool=true;
-				string+=min + "minutes ";
+				string+=min + " minutes ";
 			}
-			if(sec>0 || bool)	string+=sec + "secondes ";
+			if(sec>0 || bool)	string+=sec + " secondes ";
 			string+= ms + " millisecondes</li>"
 		}
 		
