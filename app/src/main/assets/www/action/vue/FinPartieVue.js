@@ -1,39 +1,94 @@
 const FinPartieVue ={
-	initialiser:function(dernierePartie)
+	
+	initialiser:function()
     {
-		if(!dernierePartie.error) //CREER LE GRAPH ICI SI IL A DEJA JOUER UNE PARTIE
-		{
-			alert("Ce n'est PAS votre premiere partie!");
-		}
-		else //CRÉER ICI SI C'EST ÇA PREMIERE PARTIE
-		{
-			
-		}
         document.querySelector("body").innerHTML = Page.pageFinPartie;
 		
+		this.dernierePartie=null;
+		this.moyenne=null;
+    },
+	
+	recevoirDernierePartie:function(dernierePartie){
 		
-        var color = Chart.helpers.color;
+		this.dernierePartie={chutes: (Number(dernierePartie.nombreDeChutes)||0), duree: (Number(dernierePartie.dureePartie)||0), victoire: (Number(dernierePartie.victoire)||0)};
+		FinPartieVue.dessinerGraph();
+	},
+	
+	recevoirMoyenne:function(moyenne){
+		this.moyenne={chutes: (Number(moyenne.chutes)||0), duree: (Number(moyenne.duree)||0), victoire: (Number(moyenne.ratio)||0)};
+		FinPartieVue.dessinerGraph();
+	},
+	
+	dessinerGraph:function(){
+			
+		if(/*this.partie && */this.dernierePartie && this.moyenne && (new RegExp(/^#fin-partie/).test(window.location.hash)));
+		else return;
+		
+		var victoire={
+			//partie:this.partie.victoire,
+			dernierePartie:this.dernierePartie.victoire,
+			moyenne:this.moyenne.victoire
+		}
+		
+		var chutes={
+			//partie:(this.partie.chutes || 0)/chutesMax,
+			dernierePartie:(this.dernierePartie.chutes || 0)/chutesMax,
+			moyenne:(this.moyenne.chutes || 0)/chutesMax
+		}
+		
+		var dureeMax=1;
+		
+		if(this.dernierePartie.duree>dureeMax)
+			dureeMax=this.dernierePartie.duree;
+		if(this.moyenne.duree>dureeMax)
+			dureeMax=this.moyenne.duree;
+		//if(this.partie.duree && this.partie.duree>dureeMax)
+			//dureeMax=this.partie.duree;
+		
+		var durees={
+			//partie:this.partie.duree/dureeMax,
+			dernierePartie:this.dernierePartie.duree/dureeMax,
+			moyenne:this.moyenne.duree/dureeMax
+		}
+		
+		var chutesMax=1;
+		
+		if(this.dernierePartie.chutes>chutesMax)
+			chutesMax=this.dernierePartie.chutes;
+		if(this.moyenne.chutes && this.moyenne.chutes>chutesMax)
+			chutesMax=this.moyenne.chutes;
+		//if(this.partie.chutes && this.partie.chutes>chutesMax)
+			//chutesMax=this.partie.chutes;
+		
+		var chutes={
+			//partie:this.partie.chutes/chutesMax,
+			dernierePartie:this.dernierePartie.chutes/chutesMax,
+			moyenne:this.moyenne.chutes/chutesMax
+		}
+		
+		var color = Chart.helpers.color;
+		
         var barChartData = {
             labels: ["Nombre de chutes", "Duree", "Ratio de victoire"],
-            datasets: [{
+            datasets: [/*{
                 label: 'Cette partie',
                 backgroundColor: color('rgb(255, 99, 132)').alpha(0.5).rgbString(),
                 borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 1,
                 data: [
-                    1*100,
-					0.8*100,
-					0*100
+                    chutes.partie*100,
+					durees.partie*100,
+					victoire.partie*100
                 ]
-            }, {
+            }, */{
                 label: 'Derniere Partie',
                 backgroundColor: color('rgb(255, 159, 64)').alpha(0.5).rgbString(),
                 borderColor: 'rgb(255, 159, 64)',
                 borderWidth: 1,
                 data: [
-                    0.5*100,
-					1*100,
-					1*100
+                    chutes.dernierePartie*100,
+					durees.dernierePartie*100,
+					victoire.dernierePartie*100
                 ]
             }, {
                 label: 'Moyenne globale',
@@ -41,28 +96,31 @@ const FinPartieVue ={
                 borderColor: 'rgb(255, 205, 86)',
                 borderWidth: 1,
                 data: [
-                    0.7*100,
-					0.75*100,
-					0.4*100
+                    chutes.moyenne*100,
+					durees.moyenne*100,
+					victoire.moyenne*100
                 ]
             }]
 
         };
 
-            var ctx = document.getElementById("chart-area").getContext("2d");
-            window.myBar = new Chart(ctx, {
-                type: 'bar',
-                data: barChartData,
-                options: {
-                    responsive: true,
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Statistiques'
-                    }
-                }
-            });
-    }
+		var ctx = document.getElementById("chart-area").getContext("2d");
+		window.myBar = new Chart(ctx, {
+			type: 'bar',
+			data: barChartData,
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Statistiques (%)'
+				}
+			}
+		});
+		
+		this.dernierePartie=null;
+		this.moyenne=null;
+	}
 };

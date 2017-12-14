@@ -89,10 +89,16 @@
 			if(!Data.joueur.id) window.location.hash="#";
 			
 			Sons.playMusic("theme_menu");
+			FinPartieVue.initialiser();
+			
             ServeurPhp.dernierePartieJoueur();
+            ServeurPhp.moyenneJoueur();
         }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
+			window.location.hash="#fin-partie";
+			return;
+			
 			if(!Data.joueur.id) window.location.hash="#";
 			
 			Sons.playMusic("theme_combat");

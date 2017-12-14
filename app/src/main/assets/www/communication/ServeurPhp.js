@@ -207,16 +207,31 @@ const ServeurPhp={
 	dernierePartieJoueur:function(){
 		var apres=function(objet){
 			
-			console.log(objet);
+			if(objet.error){				
+				if(objet.error=="premiere-partie")
+					FinPartieVue.recevoirDernierePartie({idUtilisateur: Data.joueur.id, victoire: 0, nombreDeChutes: 0, dureePartie:0});
+				
+				return;
+			}
+			FinPartieVue.recevoirDernierePartie(objet);
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/dernierePartieJoueur.php?id=" + Data.joueur.id;
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
+	moyenneJoueur:function(){
+		var apres=function(objet){
 			
 			if(objet.error){
 				//handleEvent
 				return;
 			}
-			FinPartieVue.initialiser(objet);
+			FinPartieVue.recevoirMoyenne(objet);
 		};
 		
-		var url="http://fredericsimoneau.com/combat-arena/dernierePartieJoueur.php?id=" + Data.joueur.id;
+		var url="http://fredericsimoneau.com/combat-arena/moyenneStatsJoueur.php?id=" + Data.joueur.id;
 		
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
