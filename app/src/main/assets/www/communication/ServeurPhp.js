@@ -149,6 +149,9 @@ const ServeurPhp={
 				//handleEvent
 				return;
 			}
+			
+			ClassementsVue.classementVictoires(objet);
+			
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParVictoires.php";
@@ -165,6 +168,8 @@ const ServeurPhp={
 				//handleEvent
 				return;
 			}
+			
+			ClassementsVue.classementTemps(objet);
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParTemps.php";
@@ -181,6 +186,8 @@ const ServeurPhp={
 				//handleEvent
 				return;
 			}
+			
+			ClassementsVue.classementMorts(objet);
 		};
 		
 		var url="http://fredericsimoneau.com/combat-arena/listeJoueursParChutes.php";

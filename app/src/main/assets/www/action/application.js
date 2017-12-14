@@ -67,14 +67,17 @@
         }
 		else if(new RegExp(/^#classements\/temps/).test(ancre))
         {
+			ClassementsVue.initialiser();
 			ServeurPhp.classementsTemps();
         }
 		else if(new RegExp(/^#classements\/victoires/).test(ancre))
         {
+			ClassementsVue.initialiser();
 			ServeurPhp.classementsVictoires();
         }
 		else if(new RegExp(/^#classements\/chutes/).test(ancre))
         {
+			ClassementsVue.initialiser();
 			ServeurPhp.classementsMorts();
         }
 		else if(new RegExp(/^#classements/).test(ancre))
