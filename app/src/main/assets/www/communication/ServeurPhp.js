@@ -195,6 +195,23 @@ const ServeurPhp={
 		ServeurPhp.envoyerRequeteAjax(url,apres);
 	},
 	
+	dernierePartieJoueur:function(){
+		var apres=function(objet){
+			
+			console.log(objet);
+			
+			if(objet.error){
+				//handleEvent
+				return;
+			}
+			FinPartieVue.initialiser(objet);
+		};
+		
+		var url="http://fredericsimoneau.com/combat-arena/dernierePartieJoueur.php?id=" + Data.joueur.id;
+		
+		ServeurPhp.envoyerRequeteAjax(url,apres);
+	},
+	
 	envoyerRequeteAjax:function(url, fonctionApres){
 		
 		if(!url){
