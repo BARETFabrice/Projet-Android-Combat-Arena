@@ -7,6 +7,7 @@ var CombatArenaMap = function(pixiApp)
     var positionX;
     var positionY;
     var tabSpriteSol;
+    var rectangleCollisionFontDeMap;
     
     function initialiser()
     {
@@ -71,7 +72,6 @@ var CombatArenaMap = function(pixiApp)
             mapConteneur.addChild(tabSpriteSol[tabSpriteSol01.length]);
             tabSpriteSol[tabSpriteSol01.length].position.x = 0;
             tabSpriteSol[tabSpriteSol01.length].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur - CombatArenaMap.Configuration.hauteurPalier;
-            
             
             console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");
             dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);

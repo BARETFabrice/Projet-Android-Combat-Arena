@@ -87,6 +87,12 @@
 		else if(new RegExp(/^#fin-partie/).test(ancre))
         {
 			if(!Data.joueur.id) window.location.hash="#";
+            
+            var chrono = jeuVue.getChrono();
+            var nbPieceRamasser = jeuVue.getNombreDePieceRammasser();
+            var nbChute = jeuVue.getNombreDeChute();
+            
+            console.log("chrono: " + chrono + ", pieceRamasser: " + nbPieceRamasser + ", nbChute" + nbChute);
 			
 			Sons.playMusic("theme_menu");
 			FinPartieVue.initialiser();

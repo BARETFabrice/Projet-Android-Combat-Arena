@@ -1,11 +1,26 @@
 const JeuVue = function()
 {
-    var combatArenaJeu;
+    var combatArena;
     
     this.initialiser=function()
     {
         document.body.innerHTML = Page.pageJeu;
         
-        combatArena = CombatArena();
-    }   
+        combatArena = new CombatArena();
+    }
+    
+    this.getNombreDeChute = function()
+    {
+        return combatArena.getNombreDeChute();
+    }
+    
+    this.getNombreDePieceRammasser = function()
+    {
+        return combatArena.getNombreDePieceRammasser();
+    }
+    
+    this.getChrono = function()
+    {
+        return combatArena.getChrono();
+    }
 };

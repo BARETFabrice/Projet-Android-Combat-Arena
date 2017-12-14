@@ -1,5 +1,9 @@
 var CombatArenaJoueur = function(combatArenaMap)
 {
+    this.pointDeVie = 100;
+    this.nombreDePiece = 0;
+    this.nombreDeChute = 0;
+    
     var joueurConteneur;
     var joueurTexture;
     var joueurSprite;
@@ -80,6 +84,22 @@ var CombatArenaJoueur = function(combatArenaMap)
         };
     };
     
+    this.resetPositionJoueur = function()
+    {
+        positionX = CombatArenaJoueur.Configuration.positionX;
+        positionY = CombatArenaJoueur.Configuration.positionY;
+        
+        this.pointDeVie -= CombatArenaJoueur.Configuration.degatChute;
+        this.nombreDeChute++;
+    }
+    
+    this.isCollisionAvecLeFondDeMap = function()
+    {
+        if(positionY > (CombatArenaMap.Configuration.tailleYimage + 100)) return true;
+        
+        return false;
+    }
+    
     this.isCollisionAvecSol = function(sprite)
     {
         if(colision(sprite, joueurConteneur)) return true;
@@ -111,5 +131,6 @@ CombatArenaJoueur.Configuration =
     positionY : 1211,
     vitesseDeDeplacement : 12,
     vitesseDeChute : -15,
-    pousseeSaut : 30
+    pousseeSaut : 30,
+    degatChute : 25
 }

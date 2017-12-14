@@ -22,14 +22,14 @@ var CombatArenaCommande = function(pixiApp)
         flecheDroite = new PIXI.Sprite(flecheDroiteTexture);
         flecheHaut = new PIXI.Sprite(flecheHautTexture);
         
-        //console.log(pixiApp.view.width);
+        //console.log(pixiApp.renderer.width);
         
         flecheGauche.position.x = 0 * CombatArenaCommande.Configuration.image.tailleX;
-        flecheGauche.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
+        flecheGauche.position.y = pixiApp.renderer.height - CombatArenaCommande.Configuration.image.tailleY;
         flecheDroite.position.x = 1 * CombatArenaCommande.Configuration.image.tailleX;
-        flecheDroite.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
-        flecheHaut.position.x = pixiApp.view.width - CombatArenaCommande.Configuration.image.tailleX;
-        flecheHaut.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
+        flecheDroite.position.y = pixiApp.renderer.height - CombatArenaCommande.Configuration.image.tailleY;
+        flecheHaut.position.x = pixiApp.renderer.width - CombatArenaCommande.Configuration.image.tailleX;
+        flecheHaut.position.y = pixiApp.renderer.height - CombatArenaCommande.Configuration.image.tailleY;
         
         pixiApp.stage.addChild(flecheGauche);
         pixiApp.stage.addChild(flecheDroite);
