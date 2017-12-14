@@ -6,6 +6,7 @@ var CombatArenaMap = function(pixiApp)
     var pixiApp = pixiApp;
     var positionX;
     var positionY;
+    var tabSpriteSol;
     
     function initialiser()
     {
@@ -41,7 +42,9 @@ var CombatArenaMap = function(pixiApp)
             sol01.position.x = 0;
             sol01.position.y = 7560;*/
             
-            var nombreDeSrpiteSol01 = 14;
+            tabSpriteSol = new Array();
+            
+            var nombreDeSrpiteSol01 = 15;
             var tabSpriteSol01 = new Array();
             for(var i = 0; i < nombreDeSrpiteSol01; i++)
             {
@@ -55,6 +58,8 @@ var CombatArenaMap = function(pixiApp)
                 mapConteneur.addChild(tabSpriteSol01[i]);
                 tabSpriteSol01[i].position.x = (i * CombatArenaMap.Configuration.image.mondeObj.sol01.largeur) - 30;
                 tabSpriteSol01[i].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur;
+                
+                tabSpriteSol.push(tabSpriteSol01[i]);
             }
             
             
@@ -69,6 +74,11 @@ var CombatArenaMap = function(pixiApp)
     {
         return mapConteneur;
     };
+    
+    this.getTabSpriteSol = function()
+    {
+        return tabSpriteSol;
+    }
     
     this.deplacerMondeVersPosition = function(position)
     {

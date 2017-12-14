@@ -4,6 +4,7 @@ var CombatArena = function()
     var combatArenaMap;
     var combatArenaJoueur;
     var combatArenaCommande;
+    var test = false;
     
     function initialiser()
     {
@@ -27,17 +28,33 @@ var CombatArena = function()
     
     function commencerCombatArena()
     {
+        combatArenaCommande = new CombatArenaCommande(app);
+        
         const ticker = new PIXI.ticker.Ticker();
         ticker.stop();
         ticker.add(rafraichir);
         ticker.start();
         
-        combatArenaCommande = new CombatArenaCommande(app);
+        
         //deactiver event
     }
     
     function rafraichir(deltaTime)
     {
+        test = false;
+        (combatArenaMap.getTabSpriteSol()).forEach(function(sprite){
+            if(!combatArenaJoueur.isCollisionAvecSol(sprite) && !test)
+            {
+                combatArenaJoueur.setJoueurEnChuteLibre(true);
+            }
+            else
+            {
+                combatArenaJoueur.setJoueurEnChuteLibre(false);
+                test = true;
+            }
+        });
+        
+        
         if(combatArenaCommande.isActionSurFlecheDroite())
         {
             combatArenaJoueur.deplacementADroite();
