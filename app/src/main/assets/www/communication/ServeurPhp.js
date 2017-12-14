@@ -22,15 +22,12 @@ const ServeurPhp={
 	},
 	
 	modifierProfil:function(nom,age,couleur,volume,courriel){
-		var apres=function(objet){			
+		var apres=function(objet){	
 			
 			if(objet.error){
-				console.log(objet);
 				//handleEvent
 				return;
 			}
-			
-			Data.joueur=objet;
 		};
 		
 		Data.joueur.age=age;

@@ -96,8 +96,8 @@
         }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
-			//window.location.hash="#fin-partie";
-			//return;
+			window.location.hash="#fin-partie";
+			return;
 			
 			if(!Data.joueur.id) window.location.hash="#";
 			
