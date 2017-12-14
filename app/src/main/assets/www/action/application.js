@@ -89,7 +89,7 @@
 			if(!Data.joueur.id) window.location.hash="#";
 			
 			Sons.playMusic("theme_menu");
-            finPartieVue = new FinPartieVue();
+            ServeurPhp.dernierePartieJoueur();
         }
         else if(new RegExp(/^#jeu/).test(ancre))
         {
