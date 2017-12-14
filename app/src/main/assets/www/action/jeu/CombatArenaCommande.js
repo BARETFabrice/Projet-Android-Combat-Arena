@@ -22,12 +22,14 @@ var CombatArenaCommande = function(pixiApp)
         flecheDroite = new PIXI.Sprite(flecheDroiteTexture);
         flecheHaut = new PIXI.Sprite(flecheHautTexture);
         
-        flecheGauche.position.x = CombatArenaCommande.Configuration.image.flecheGauche.positionX;
-        flecheGauche.position.y = CombatArenaCommande.Configuration.image.flecheGauche.positionY;
-        flecheDroite.position.x = CombatArenaCommande.Configuration.image.flecheDroite.positionX;
-        flecheDroite.position.y = CombatArenaCommande.Configuration.image.flecheDroite.positionY;
-        flecheHaut.position.x = CombatArenaCommande.Configuration.image.flecheHaut.positionX;
-        flecheHaut.position.y = CombatArenaCommande.Configuration.image.flecheHaut.positionY;
+        //console.log(pixiApp.view.width);
+        
+        flecheGauche.position.x = 0 * CombatArenaCommande.Configuration.image.tailleX;
+        flecheGauche.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
+        flecheDroite.position.x = 1 * CombatArenaCommande.Configuration.image.tailleX;
+        flecheDroite.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
+        flecheHaut.position.x = pixiApp.view.width - CombatArenaCommande.Configuration.image.tailleX;
+        flecheHaut.position.y = pixiApp.view.height - CombatArenaCommande.Configuration.image.tailleY;
         
         pixiApp.stage.addChild(flecheGauche);
         pixiApp.stage.addChild(flecheDroite);
@@ -37,27 +39,35 @@ var CombatArenaCommande = function(pixiApp)
         actionSurFlecheGauche = false;
         actionSurFlecheHaut = false;
         
+        flecheDroite.buttonMode = true;
+        flecheGauche.buttonMode = true;
         flecheHaut.buttonMode = true;
         
         flecheDroite.interactive = true;
         flecheGauche.interactive = true;
         flecheHaut.interactive = true;
         
-        flecheDroite.on("mousedown", flecheDroiteEnAction);
-        flecheGauche.on("mousedown", flecheGaucheEnAction);
+        flecheDroite.on("pointerdown", flecheDroiteEnAction);
+        flecheGauche.on("pointerdown", flecheGaucheEnAction);
         flecheHaut.on("pointerdown", flecheHautEnAction);
         
-        flecheDroite.on("mouseup", flecheDroitePasEnAction);
-        flecheGauche.on("mouseup", flecheGauchePasEnAction);
+        flecheDroite.on("pointerup", flecheDroitePasEnAction);
+        flecheGauche.on("pointerup", flecheGauchePasEnAction);
         flecheHaut.on("pointerup", flecheHautPasEnAction);
         
-        flecheDroite.on("mouseout", flecheDroitePasEnAction);
-        flecheGauche.on("mouseout", flecheGauchePasEnAction);
-        flecheHaut.on("pointerout", flecheHautPasEnAction);
+        flecheDroite.on("pointerupoutside", flecheDroitePasEnAction);
+        flecheGauche.on("pointerupoutside", flecheGauchePasEnAction);
+        flecheHaut.on("pointerupoutside", flecheHautPasEnAction);
         
         //clavier
         addEventListener("keydown", interpreterEvenementsClavier);
         addEventListener("keyup", interpreterEvenementsClavier);
+        
+        //touch-only event
+        //flecheDroite.on("touchstart", flecheDroiteEnAction);
+        //flecheGauche.on("touchend", flecheGaucheEnAction);
+        //flecheDroite.on("touchstart", flecheDroitePasEnAction);
+        //flecheGauche.on("touchend", flecheGauchePasEnAction);
     }
     
     initialiser();
@@ -169,7 +179,9 @@ CombatArenaCommande.Configuration =
             image : "fleche-haut.png",
             positionX : 400,
             positionY : 0
-        }
+        },
+        tailleX : 200,
+        tailleY : 200
     },
     toucheKey :
     {

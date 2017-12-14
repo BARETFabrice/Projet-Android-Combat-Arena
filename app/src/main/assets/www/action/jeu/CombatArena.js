@@ -10,8 +10,20 @@ var CombatArena = function()
     {
         //console.log("lancement du jeu");
         
-        app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
+        //console.log("innerHeight " + window.innerHeight);
+        //console.log("innerWidth " + window.innerWidth);
+        
+        app = new PIXI.Application(window.innerWidth, window.innerHeight, {backgroundColor : 0x1099bb});
         document.body.appendChild(app.view);
+        
+        //console.log(app.view.height);
+        //console.log(app.view.width);
+        
+        document.querySelector("canvas").style.position = "absolute";
+        document.querySelector("canvas").style.top = 0;
+        document.querySelector("canvas").style.left = 0;
+        
+        
         
         addEventListener(Evenement.finChargementSpriteCombatArenaMap.type, chargementDesJoueur);
         addEventListener(Evenement.finChargementCombatArena.type, commencerCombatArena);

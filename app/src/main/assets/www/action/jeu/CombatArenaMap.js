@@ -93,7 +93,7 @@ var CombatArenaMap = function(pixiApp)
     this.deplacerMondeVersPosition = function(position)
     {
         positionX =  - position.x;
-        positionY =  - position.y + 320;
+        positionY =  - position.y + 180;
     };
     
     this.rafraichir = function()
