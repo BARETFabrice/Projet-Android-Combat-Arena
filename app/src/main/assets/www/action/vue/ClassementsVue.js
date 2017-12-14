@@ -14,8 +14,10 @@ const ClassementsVue={
 		
 		for(var i in objet){
 			var r=objet[i];
-			
-			string+="<li>"+r.nom + ": " + r.nombreChutes + " chutes</li>"
+			if(r.nombreChutes == 0 || r.nombreChutes == 1)
+				string+="<li>"+r.nom + ": " + r.nombreChutes + " chute</li>";
+			else
+				string+="<li>"+r.nom + ": " + r.nombreChutes + " chutes</li>";
 		}
 		
 		document.getElementById("liste-classement").innerHTML+=string;
@@ -30,8 +32,10 @@ const ClassementsVue={
 		
 		for(var i in objet){
 			var r=objet[i];
-			
-			string+="<li>"+r.nom + ": " + r.victoires + " victoires</li>"
+			if(r.victoires == 0 || r.victoires == 1)
+				string+="<li>"+r.nom + ": " + r.victoires + " victoire</li>";
+			else
+				string+="<li>"+r.nom + ": " + r.victoires + " victoires</li>";
 		}
 		
 		document.getElementById("liste-classement").innerHTML+=string;
@@ -64,15 +68,30 @@ const ClassementsVue={
 			
 			if(hr>0){
 				bool=true;
-				string+=hr + " heures ";
+				if(hr === 1)
+					string+=hr + " heure ";
+				else
+					string+=hr + " heures ";
 			}
 			
 			if(min>0 || bool){
 				bool=true;
-				string+=min + " minutes ";
+				if(min == 0 || min == 1)
+					string+=min + " minute ";
+				else
+					string+=min + " minutes ";
 			}
-			if(sec>0 || bool)	string+=sec + " secondes ";
-			string+= ms + " millisecondes</li>"
+			if(sec>0 || bool){
+				if(sec == 0 || sec == 1)
+					string+=sec + " seconde ";
+				else
+					string+=sec + " secondes ";
+			}
+			
+			if(ms == 0 || ms == 1)
+				string+= ms + " milliseconde</li>";
+			else
+				string+= ms + " millisecondes</li>";
 		}
 		
 		document.getElementById("liste-classement").innerHTML+=string;	
