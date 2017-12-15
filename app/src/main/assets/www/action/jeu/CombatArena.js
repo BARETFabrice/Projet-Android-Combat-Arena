@@ -17,8 +17,6 @@ var CombatArena = function()
     
     function initialiser()
     {
-        //console.log("lancement du jeu");
-        
         //console.log("innerHeight " + window.innerHeight);
         //console.log("innerWidth " + window.innerWidth);
         
@@ -67,6 +65,8 @@ var CombatArena = function()
         ticker.start();
 
         //deactiver event
+		removeEventListener(Evenement.finChargementSpriteCombatArenaMap.type, chargementDesJoueur);
+        removeEventListener(Evenement.finChargementCombatArena.type, commencerCombatArena);
     }
     
     function initialiserCompteurDecompteText()
@@ -94,7 +94,7 @@ var CombatArena = function()
 
             if(compteurDecompte == 0)
             {
-                console.log("fin decompte")
+                //console.log("fin decompte")
                 window.clearInterval(montimer);
                 isDecompteTerminer = true;
 

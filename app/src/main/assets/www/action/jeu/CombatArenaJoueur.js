@@ -1,5 +1,7 @@
 var CombatArenaJoueur = function(combatArenaMap)
 {
+	var me = this;
+	
     this.pointDeVie = 100;
     this.nombreDePiece = 0;
     this.nombreDeChute = 0;
@@ -39,7 +41,7 @@ var CombatArenaJoueur = function(combatArenaMap)
             console.log(combatArenaMap.);
         });*/
         
-        console.log("dispatchEvent(Evenement.finChargementCombatArena);");
+        //console.log("dispatchEvent(Evenement.finChargementCombatArena);");
         dispatchEvent(Evenement.finChargementCombatArena);
     }
     

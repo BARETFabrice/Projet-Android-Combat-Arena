@@ -239,7 +239,7 @@ const ServeurPhp={
 			console.error("veuillez fournir un url");
 			return;
 		}
-		console.log(url);
+		//console.log(url);
 		
 		if(!fonctionApres)
 			fonctionApres=function(e){console.log(e);};

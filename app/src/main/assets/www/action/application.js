@@ -104,16 +104,12 @@
             ServeurPhp.moyenneJoueur();
         }
         else if(new RegExp(/^#jeu/).test(ancre))
-        {
-			/*window.location.hash="#fin-partie";
-			return;*/
-			
-			console.log(Data.joueur.id);
-			
+        {			
 			if(!Data.joueur.id) window.location.hash="#";
 			
 			Sons.playMusic("theme_combat");
-            jeuVue = new JeuVue();
+			
+            if(!jeuVue) jeuVue = new JeuVue();
 			jeuVue.initialiser();
         }
 		else{
