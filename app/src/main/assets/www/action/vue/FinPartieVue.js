@@ -14,6 +14,12 @@ const FinPartieVue ={
 		FinPartieVue.dessinerGraph();
 	},
 	
+	recevoirPartie:function(partie){
+		
+		this.partie=partie;
+		FinPartieVue.dessinerGraph();
+	},
+	
 	recevoirMoyenne:function(moyenne){
 		this.moyenne={chutes: (Number(moyenne.chutes)||0), duree: (Number(moyenne.duree)||0), victoire: (Number(moyenne.ratio)||0)};
 		FinPartieVue.dessinerGraph();
@@ -21,17 +27,17 @@ const FinPartieVue ={
 	
 	dessinerGraph:function(){
 			
-		if(/*this.partie && */this.dernierePartie && this.moyenne && (new RegExp(/^#fin-partie/).test(window.location.hash)));
+		if(this.partie && this.dernierePartie && this.moyenne && (new RegExp(/^#fin-partie/).test(window.location.hash)));
 		else return;
 		
 		var victoire={
-			//partie:this.partie.victoire,
+			partie:this.partie.victoire,
 			dernierePartie:this.dernierePartie.victoire,
 			moyenne:this.moyenne.victoire
 		}
 		
 		var chutes={
-			//partie:(this.partie.chutes || 0)/chutesMax,
+			partie:(this.partie.chutes || 0)/chutesMax,
 			dernierePartie:(this.dernierePartie.chutes || 0)/chutesMax,
 			moyenne:(this.moyenne.chutes || 0)/chutesMax
 		}
@@ -42,11 +48,11 @@ const FinPartieVue ={
 			dureeMax=this.dernierePartie.duree;
 		if(this.moyenne.duree>dureeMax)
 			dureeMax=this.moyenne.duree;
-		//if(this.partie.duree && this.partie.duree>dureeMax)
-			//dureeMax=this.partie.duree;
+		if(this.partie.duree && this.partie.duree>dureeMax)
+			dureeMax=this.partie.duree;
 		
 		var durees={
-			//partie:this.partie.duree/dureeMax,
+			partie:this.partie.duree/dureeMax,
 			dernierePartie:this.dernierePartie.duree/dureeMax,
 			moyenne:this.moyenne.duree/dureeMax
 		}
@@ -57,11 +63,11 @@ const FinPartieVue ={
 			chutesMax=this.dernierePartie.chutes;
 		if(this.moyenne.chutes && this.moyenne.chutes>chutesMax)
 			chutesMax=this.moyenne.chutes;
-		//if(this.partie.chutes && this.partie.chutes>chutesMax)
-			//chutesMax=this.partie.chutes;
+		if(this.partie.chutes && this.partie.chutes>chutesMax)
+			chutesMax=this.partie.chutes;
 		
 		var chutes={
-			//partie:this.partie.chutes/chutesMax,
+			partie:this.partie.chutes/chutesMax,
 			dernierePartie:this.dernierePartie.chutes/chutesMax,
 			moyenne:this.moyenne.chutes/chutesMax
 		}
@@ -70,7 +76,7 @@ const FinPartieVue ={
 		
         var barChartData = {
             labels: ["Nombre de chutes", "Duree", "Ratio de victoire"],
-            datasets: [/*{
+            datasets: [{
                 label: 'Cette partie',
                 backgroundColor: color('rgb(255, 99, 132)').alpha(0.5).rgbString(),
                 borderColor: 'rgb(255, 99, 132)',
@@ -80,7 +86,7 @@ const FinPartieVue ={
 					durees.partie*100,
 					victoire.partie*100
                 ]
-            }, */{
+            }, {
                 label: 'Derniere Partie',
                 backgroundColor: color('rgb(255, 159, 64)').alpha(0.5).rgbString(),
                 borderColor: 'rgb(255, 159, 64)',

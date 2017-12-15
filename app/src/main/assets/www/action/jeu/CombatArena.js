@@ -127,9 +127,9 @@ var CombatArena = function()
         app.stage.addChild(chronoText);
         
         var montimer = window.setInterval(function(){
-            chrono++;
-            chronoText.text = 'chrono : ' + chrono;
-        },1000);
+            chrono+=10;
+            chronoText.text = 'chrono : ' + Math.floor(chrono/1000);
+        },10);
     }
     
     function initialiserPointDeVieJoueurText()
