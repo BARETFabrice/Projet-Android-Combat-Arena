@@ -23,4 +23,9 @@ const JeuVue = function()
     {
         return combatArena.getChrono();
     }
+    
+    this.isVictoire =  function()
+    {
+        return combatArena.isVistoire();
+    }
 };
