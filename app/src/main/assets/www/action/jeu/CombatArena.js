@@ -179,7 +179,7 @@ var CombatArena = function()
     
     function rafraichir(deltaTime)
     {
-        if(combatArenaJoueur.nombreDePiece => CombatArena.Configuration.pointDeVictoire)
+        if(combatArenaJoueur.nombreDePiece >= CombatArena.Configuration.pointDeVictoire)
         {
             isVistoire = true;
             isFinPartie = true;
