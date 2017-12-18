@@ -12,6 +12,7 @@ var CombatArena = function()
     var compteurDecompteText;
     var pointDeVieJoueurText;
     var nombreDePieceJoueurText;
+    var isVistoire = false;
     
     var ticker;
     
@@ -178,9 +179,15 @@ var CombatArena = function()
     
     function rafraichir(deltaTime)
     {
-        if(combatArenaJoueur.pointDeVie <= 0)
+        if(combatArenaJoueur.nombreDePiece => CombatArena.Configuration.pointDeVictoire)
+        {
+            isVistoire = true;
+            isFinPartie = true;
+        }
+        else if(combatArenaJoueur.pointDeVie <= CombatArena.Configuration.vieMort)
         {
             isFinPartie = true;
+            isVistoire = false;
         }
         
         if(isFinPartie)
@@ -247,11 +254,18 @@ var CombatArena = function()
     {
         return chrono;
     }
+    
+    this.isVictoire =  function()
+    {
+        return isVistoire;
+    }
 };
 
 CombatArena.Configuration =
 {
-    cheminImage: "asset/image/"
+    cheminImage: "asset/image/",
+    pointDeVictoire : 50,
+    vieMort : 0
 };
 
 CombatArena.Configuration.initialiser = function()
