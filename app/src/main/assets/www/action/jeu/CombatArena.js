@@ -13,6 +13,8 @@ var CombatArena = function()
     var pointDeVieJoueurText;
     var nombreDePieceJoueurText;
     var isVistoire = false;
+    var statutPartieText;
+    var textStatue;
     
     var ticker;
     
@@ -171,10 +173,39 @@ var CombatArena = function()
         app.stage.addChild(nombreDePieceJoueurText);
     }
     
+    function detruireAffichageStatJoueur()
+    {
+        app.stage.removeChild(nombreDePieceJoueurText);
+        app.stage.removeChild(pointDeVieJoueurText);
+        app.stage.removeChild(chronoText);
+    }
+    
     function rafraichirStatJoueur()
     {
         pointDeVieJoueurText.text = 'Vie: ' + combatArenaJoueur.pointDeVie;
         nombreDePieceJoueurText.text = 'Nb Piece: ' + combatArenaJoueur.nombreDePiece;
+    }
+    
+    function afficherstatutPartieText()
+    {
+        if(isVistoire) textStatue = "Vous avez gagne!!!";
+        else textStatue = "Vous avez perdu.";
+        
+        statutPartieText = new PIXI.Text(textStatue, {
+            fontStyle: 'italic',
+            fontSize: 60,
+            fontFamily: 'Arvo',
+            fill: '#3e1707',
+            align: 'center',
+            stroke: '#a4410e',
+            strokeThickness: 7
+        });
+
+        statutPartieText.x = app.renderer.width / 2;
+        statutPartieText.y = app.renderer.height / 2;
+        statutPartieText.anchor.x = 0.5;
+
+        app.stage.addChild(statutPartieText);
     }
     
     function rafraichir(deltaTime)
@@ -192,11 +223,16 @@ var CombatArena = function()
         
         if(isFinPartie)
         {
-            //console.log("chrono: " + chrono + ", pieceRamasser: " + combatArenaJoueur.nombreDePiece + ", nbChute" + combatArenaJoueur.nombreDeChute);
             ticker.stop();
             
-            window.location.hash="#fin-partie";
-			return;
+            detruireAffichageStatJoueur();
+            afficherstatutPartieText();
+            
+            setTimeout(function(){
+                window.location.hash="#fin-partie";
+                return;
+            }, 3000);
+            //console.log("chrono: " + chrono + ", pieceRamasser: " + combatArenaJoueur.nombreDePiece + ", nbChute" + combatArenaJoueur.nombreDeChute);
         }
         
         rafraichirStatJoueur();
@@ -213,6 +249,17 @@ var CombatArena = function()
                 test = true;
             }
         });
+        
+        (combatArenaMap.getTabSpritePiece()).forEach(function(sprite){
+            if(combatArenaJoueur.isCollisionAvecPiece(sprite))
+            {
+                //console.log("piece");
+                combatArenaJoueur.nombreDePiece++;
+                combatArenaMap.detruirePiece(sprite);
+            }
+        });
+        
+        
         
         if(combatArenaJoueur.isCollisionAvecLeFondDeMap())
         {

@@ -104,6 +104,11 @@ var CombatArenaMap = function(pixiApp)
         return tabSpriteSol;
     }
     
+    this.getTabSpritePiece = function()
+    {
+        return tabSpritePiece;
+    }
+    
     this.deplacerMondeVersPosition = function(position)
     {
         positionX =  - position.x;
@@ -114,6 +119,12 @@ var CombatArenaMap = function(pixiApp)
     {
         mapConteneur.position.x = positionX;
         mapConteneur.position.y = positionY;
+    }
+    
+    this.detruirePiece = function(sprite)
+    {
+        mapConteneur.removeChild(sprite);
+        tabSpritePiece.splice(sprite);
     }
 };
 

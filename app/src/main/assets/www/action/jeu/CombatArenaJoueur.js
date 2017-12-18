@@ -2,9 +2,9 @@ var CombatArenaJoueur = function(combatArenaMap)
 {
 	var me = this;
 	
-    this.pointDeVie = 100;
-    this.nombreDePiece = 0;
-    this.nombreDeChute = 0;
+    this.pointDeVie = CombatArenaJoueur.Configuration.pointDevieDepart;
+    this.nombreDePiece = CombatArenaJoueur.Configuration.nombreDePieceDepart;
+    this.nombreDeChute = CombatArenaJoueur.Configuration.nombreDeChuteDepart;
     
     var joueurConteneur;
     var joueurTexture;
@@ -27,19 +27,11 @@ var CombatArenaJoueur = function(combatArenaMap)
         positionX = CombatArenaJoueur.Configuration.positionX;
         positionY = CombatArenaJoueur.Configuration.positionY;
         
-        //console.log("height carte " + combatArenaMap.height);
-        //console.log("width carte " + combatArenaMap.width);
-        
         joueurConteneur.addChild(joueurSprite);
         combatArenaMap.addChild(joueurConteneur);
         
         joueurConteneur.position.x = positionX;
         joueurConteneur.position.y = positionY;
-        
-        /*combatArenaMap.interactive = true;
-        combatArenaMap.on("click", function(e){
-            console.log(combatArenaMap.);
-        });*/
         
         //console.log("dispatchEvent(Evenement.finChargementCombatArena);");
         dispatchEvent(Evenement.finChargementCombatArena);
@@ -93,14 +85,21 @@ var CombatArenaJoueur = function(combatArenaMap)
         
         this.pointDeVie -= CombatArenaJoueur.Configuration.degatChute;
         this.nombreDeChute++;
-    }
+    };
+    
+    this.isCollisionAvecPiece = function(sprite)
+    {
+        if(colision(sprite, joueurConteneur)) return true;
+        
+        return false;
+    };
     
     this.isCollisionAvecLeFondDeMap = function()
     {
         if(positionY > (CombatArenaMap.Configuration.tailleYimage + 100)) return true;
         
         return false;
-    }
+    };
     
     this.isCollisionAvecSol = function(sprite)
     {
@@ -134,5 +133,8 @@ CombatArenaJoueur.Configuration =
     vitesseDeDeplacement : 12,
     vitesseDeChute : -15,
     pousseeSaut : 30,
-    degatChute : 25
+    degatChute : 25,
+    nombreDePieceDepart : 49,
+    pointDevieDepart : 100,
+    nombreDeChuteDepart : 0
 }
