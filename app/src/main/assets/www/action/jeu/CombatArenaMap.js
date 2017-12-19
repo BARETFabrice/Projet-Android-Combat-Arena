@@ -7,7 +7,8 @@ var CombatArenaMap = function(pixiApp)
     var positionX;
     var positionY;
     var tabSpriteSol;
-    var rectangleCollisionFontDeMap;
+    var tabSpritePiece;
+    
     
     function initialiser()
     {
@@ -73,7 +74,20 @@ var CombatArenaMap = function(pixiApp)
             tabSpriteSol[tabSpriteSol01.length].position.x = 0;
             tabSpriteSol[tabSpriteSol01.length].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur - CombatArenaMap.Configuration.hauteurPalier;
             
-            console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");
+            tabSpritePiece = new Array();
+            
+            tabSpritePiece.push(new PIXI.Sprite(
+                        new PIXI.Texture(mondeTextures, 
+                                         new PIXI.Rectangle(CombatArenaMap.Configuration.piece.frame01.positionX,
+                                                            CombatArenaMap.Configuration.piece.frame01.positionY, 
+                                                            CombatArenaMap.Configuration.piece.frame01.largeur, CombatArenaMap.Configuration.piece.frame01.hauteur))));
+            mapConteneur.addChild(tabSpritePiece[0]);
+            tabSpritePiece[0].position.x = 15;
+            tabSpritePiece[0].position.y = CombatArenaMap.Configuration.tailleYimage - CombatArenaMap.Configuration.image.mondeObj.sol01.hauteur - CombatArenaMap.Configuration.hauteurPalier - 80;
+            
+            
+            
+            //console.log("dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);");
             dispatchEvent(Evenement.finChargementSpriteCombatArenaMap);
         }
     }
@@ -90,6 +104,11 @@ var CombatArenaMap = function(pixiApp)
         return tabSpriteSol;
     }
     
+    this.getTabSpritePiece = function()
+    {
+        return tabSpritePiece;
+    }
+    
     this.deplacerMondeVersPosition = function(position)
     {
         positionX =  - position.x;
@@ -100,6 +119,12 @@ var CombatArenaMap = function(pixiApp)
     {
         mapConteneur.position.x = positionX;
         mapConteneur.position.y = positionY;
+    }
+    
+    this.detruirePiece = function(sprite)
+    {
+        mapConteneur.removeChild(sprite);
+        tabSpritePiece.splice(sprite);
     }
 };
 
@@ -118,6 +143,16 @@ CombatArenaMap.Configuration =
                 hauteur : 57,
                 largeur : 319
             }
+        }
+    },
+    piece :
+    {
+        frame01 : 
+        {
+            positionX : 330,
+            positionY : 0,
+            hauteur : 80,
+            largeur : 50,
         }
     },
     positionX : 0,

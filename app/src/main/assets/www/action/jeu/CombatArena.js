@@ -12,13 +12,14 @@ var CombatArena = function()
     var compteurDecompteText;
     var pointDeVieJoueurText;
     var nombreDePieceJoueurText;
+    var isVistoire = false;
+    var statutPartieText;
+    var textStatue;
     
     var ticker;
     
     function initialiser()
     {
-        //console.log("lancement du jeu");
-        
         //console.log("innerHeight " + window.innerHeight);
         //console.log("innerWidth " + window.innerWidth);
         
@@ -67,6 +68,8 @@ var CombatArena = function()
         ticker.start();
 
         //deactiver event
+		removeEventListener(Evenement.finChargementSpriteCombatArenaMap.type, chargementDesJoueur);
+        removeEventListener(Evenement.finChargementCombatArena.type, commencerCombatArena);
     }
     
     function initialiserCompteurDecompteText()
@@ -94,7 +97,7 @@ var CombatArena = function()
 
             if(compteurDecompte == 0)
             {
-                console.log("fin decompte")
+                //console.log("fin decompte")
                 window.clearInterval(montimer);
                 isDecompteTerminer = true;
 
@@ -127,9 +130,9 @@ var CombatArena = function()
         app.stage.addChild(chronoText);
         
         var montimer = window.setInterval(function(){
-            chrono++;
-            chronoText.text = 'chrono : ' + chrono;
-        },1000);
+            chrono+=10;
+            chronoText.text = 'chrono : ' + Math.floor(chrono/1000);
+        },10);
     }
     
     function initialiserPointDeVieJoueurText()
@@ -170,26 +173,66 @@ var CombatArena = function()
         app.stage.addChild(nombreDePieceJoueurText);
     }
     
+    function detruireAffichageStatJoueur()
+    {
+        app.stage.removeChild(nombreDePieceJoueurText);
+        app.stage.removeChild(pointDeVieJoueurText);
+        app.stage.removeChild(chronoText);
+    }
+    
     function rafraichirStatJoueur()
     {
         pointDeVieJoueurText.text = 'Vie: ' + combatArenaJoueur.pointDeVie;
         nombreDePieceJoueurText.text = 'Nb Piece: ' + combatArenaJoueur.nombreDePiece;
     }
     
+    function afficherstatutPartieText()
+    {
+        if(isVistoire) textStatue = "Vous avez gagne!!!";
+        else textStatue = "Vous avez perdu.";
+        
+        statutPartieText = new PIXI.Text(textStatue, {
+            fontStyle: 'italic',
+            fontSize: 60,
+            fontFamily: 'Arvo',
+            fill: '#3e1707',
+            align: 'center',
+            stroke: '#a4410e',
+            strokeThickness: 7
+        });
+
+        statutPartieText.x = app.renderer.width / 2;
+        statutPartieText.y = app.renderer.height / 2;
+        statutPartieText.anchor.x = 0.5;
+
+        app.stage.addChild(statutPartieText);
+    }
+    
     function rafraichir(deltaTime)
     {
-        if(combatArenaJoueur.pointDeVie <= 0)
+        if(combatArenaJoueur.nombreDePiece >= CombatArena.Configuration.pointDeVictoire)
+        {
+            isVistoire = true;
+            isFinPartie = true;
+        }
+        else if(combatArenaJoueur.pointDeVie <= CombatArena.Configuration.vieMort)
         {
             isFinPartie = true;
+            isVistoire = false;
         }
         
         if(isFinPartie)
         {
-            //console.log("chrono: " + chrono + ", pieceRamasser: " + combatArenaJoueur.nombreDePiece + ", nbChute" + combatArenaJoueur.nombreDeChute);
             ticker.stop();
             
-            window.location.hash="#fin-partie";
-			return;
+            detruireAffichageStatJoueur();
+            afficherstatutPartieText();
+            
+            setTimeout(function(){
+                window.location.hash="#fin-partie";
+                return;
+            }, 3000);
+            //console.log("chrono: " + chrono + ", pieceRamasser: " + combatArenaJoueur.nombreDePiece + ", nbChute" + combatArenaJoueur.nombreDeChute);
         }
         
         rafraichirStatJoueur();
@@ -206,6 +249,17 @@ var CombatArena = function()
                 test = true;
             }
         });
+        
+        (combatArenaMap.getTabSpritePiece()).forEach(function(sprite){
+            if(combatArenaJoueur.isCollisionAvecPiece(sprite))
+            {
+                //console.log("piece");
+                combatArenaJoueur.nombreDePiece++;
+                combatArenaMap.detruirePiece(sprite);
+            }
+        });
+        
+        
         
         if(combatArenaJoueur.isCollisionAvecLeFondDeMap())
         {
@@ -247,11 +301,18 @@ var CombatArena = function()
     {
         return chrono;
     }
+    
+    this.isVictoire =  function()
+    {
+        return isVistoire;
+    }
 };
 
 CombatArena.Configuration =
 {
-    cheminImage: "asset/image/"
+    cheminImage: "asset/image/",
+    pointDeVictoire : 50,
+    vieMort : 0
 };
 
 CombatArena.Configuration.initialiser = function()

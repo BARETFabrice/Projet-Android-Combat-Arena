@@ -92,7 +92,10 @@
             var nbPieceRamasser = jeuVue.getNombreDePieceRammasser();
             var nbChute = jeuVue.getNombreDeChute();
             
-            console.log("chrono: " + chrono + ", pieceRamasser: " + nbPieceRamasser + ", nbChute" + nbChute);
+            var partie={chutes: (Number(nbChute)||0), duree: (Number(chrono)||0), victoire: (Number(nbPieceRamasser>=5)||0)};
+			FinPartieVue.recevoirPartie(partie);
+			
+			ServeurPhp.terminerPartie(partie.victoire,partie.chutes,partie.duree);
 			
 			Sons.playMusic("theme_menu");
 			FinPartieVue.initialiser();
@@ -101,13 +104,11 @@
             ServeurPhp.moyenneJoueur();
         }
         else if(new RegExp(/^#jeu/).test(ancre))
-        {
-			/*window.location.hash="#fin-partie";
-			return;*/
-			
+        {			
 			if(!Data.joueur.id) window.location.hash="#";
 			
 			Sons.playMusic("theme_combat");
+			
             if(!jeuVue) jeuVue = new JeuVue();
 			jeuVue.initialiser();
         }
