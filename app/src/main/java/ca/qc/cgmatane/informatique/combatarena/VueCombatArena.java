@@ -1,6 +1,7 @@
 package ca.qc.cgmatane.informatique.combatarena;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import org.apache.cordova.*;
 import org.apache.cordova.DroidGap;
 
